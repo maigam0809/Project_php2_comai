@@ -20,7 +20,7 @@
                                 <ul class="nav navbar-pills">
                                     <?php foreach ($data['categories'] as $item) : ?>
                                         <li class="nav-item lv1">
-                                            <a href="<?= BASE_URL ?>/product_type_sale/index/<?= $item['cate_id'] ?>/1" class="nav-link"><?= $item['cate_name'] ?></a>
+                                            <a href="<?= BASE_URL ?>/product_type_sale/<?= $item->id ?>/" class="nav-link"><?= $item->name ?></a>
                                         </li>
                                     <?php endforeach; ?>
 
@@ -55,20 +55,20 @@
                         <div class="sale_off_today">
                             <div class="not-dqowl wrp_list_product">
                                 <?php $dem = 0;
-                                foreach ($data['spbc'] as $item) :
-                                    $toll_sale = 100 - $item['product_sale'];
-                                    $tich = $toll_sale * $item['product_price'];
+                                foreach ($data['topView5'] as $item) :
+                                    $toll_sale = 100 - $item->sale;
+                                    $tich = $toll_sale * $item->price;
                                     $price_sale = ($tich / 100);
                                 ?>
                                     <?php if ($dem < 4) { ?>
                                         <div class="item_small">
                                             <div class="product-mini-item clearfix on-sale">
-                                                <a href="<?= BASE_URL ?>/product_detail/index/<?= $item['product_id'] ?>" class="product-img">
-                                                    <img src="<?= IMGAE_DISPLAY ?>/backend/image/products/<?= $item['product_image'] ?>" alt="">
+                                                <a href="<?= BASE_URL ?>/product_detail/<?= $item->id ?>" class="product-img">
+                                                    <img src="<?= IMGAE_DISPLAY ?>/backend/image/products/<?= $item->image ?>" alt="">
                                                 </a>
                                                 <div class="product-info">
                                                     <h3>
-                                                        <a href="" class="product-name text3line"><?= $item['product_name'] ?></a>
+                                                        <a href="" class="product-name text3line"><?= $item->name ?></a>
                                                     </h3>
                                                     <div class="price-box">
                                                         <span class="price">
@@ -76,7 +76,7 @@
                                                         </span>
                                                         <!-- giá khuyến mãi -->
                                                         <span class="old-price">
-                                                            <del class="sale-price"><?= $item['product_price'] ?>₫/kg</del>
+                                                            <del class="sale-price"><?= $item->price ?>₫/kg</del>
                                                         </span>
                                                         <!-- giá gốc của sản phẩm nhé-->
                                                     </div>
@@ -109,14 +109,14 @@
                                 <h2><span>Sản phẩm khuyến mãi</span></h2>
                             </div>
                         </div>
-                        <?php if (!empty($data['loai'])) : ?>
+                        <?php if (!empty($data['takeSale'])) : ?>
                             <section class="products-view products-view-grid aside-content">
                                 <div class="row row-noGutter-45">
                                     <!-- box-1 -->
                                     <?php
-                                    foreach ($data['loai'] as $item) :
-                                        $toll_sale = 100 - $item['product_sale'];
-                                        $tich = $toll_sale * $item['product_price'];
+                                    foreach ($data['takeSale'] as $item) :
+                                        $toll_sale = 100 - $item->sale;
+                                        $tich = $toll_sale * $item->price;
                                         $price_sale = ($tich / 100);
                                     ?>
                                         <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3" style="  margin-bottom: 10px;">
@@ -125,10 +125,10 @@
                                                 <div class="product-box-h">
                                                     <div class="border_in">
                                                         <div class="icon_pro">
-                                                        <?php if ($item['product_sale'] > 0) : ?>
+                                                        <?php if ($item->sale > 0) : ?>
                                                                 <div class="price" style="background-color:green;margin-left: -12px;  padding: 5px 6px;">
                                                                     <a data-toggle="modal" data-target="#myModal" class="xem_nhanh" href="">
-                                                                        - <?= $item['product_sale'] ?>%
+                                                                        - <?= $item->sale ?>%
                                                                     </a>
                                                                 </div>
                                                             <?php else : ?>
@@ -145,13 +145,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="product-thumbnail">
-                                                            <a class="image_link" href="<?= BASE_URL ?>/product_detail/index/<?= $item['product_id'] ?>" title="<?= $item['product_name'] ?>">
-                                                                <img class="lazyload loaded" src="<?= IMGAE_DISPLAY ?>/backend/image/products/<?= $item['product_image'] ?>">
+                                                            <a class="image_link" href="<?= BASE_URL ?>/product_detail/<?= $item->id ?>" title="<?= $item->name ?>">
+                                                                <img class="lazyload loaded" src="<?= IMGAE_DISPLAY ?>/backend/image/products/<?= $item->image ?>">
                                                             </a>
                                                             <div class="pro_action">
-                                                            <?php if ($item['product_status'] != 0) : ?>
+                                                            <?php if ($item->status != 0) : ?>
                                                 <form action="" method="post">
-                                                    <input type="hidden" name="<?= $item['product_id'] ?>" value="1">
+                                                    <input type="hidden" name="<?= $item->id ?>" value="1">
                                                     <button type="submit" name="btn_cart" class="btn btn-cart hidden ">Thêm vào giỏ hàng </button>
                                                 </form>
                                                 <?php else : ?>
@@ -162,14 +162,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="product-info">
-                                                            <h3 class="product-name"><a class="height_name" href="#" title="<?= $item['product_name'] ?>"><?= $item['product_name'] ?></a>
+                                                            <h3 class="product-name"><a class="height_name" href="#" title="<?= $item->name ?>"><?= $item->name ?></a>
                                                             </h3>
                                                             <div class="product-hides">
                                                                 <div class="price-box clearfix">
                                                                     <span class="price product-price"><?= $price_sale ?>₫/kg</span>
                                                                     <span class="price product-price-old">
-                                                                    <?php if ($item['product_sale'] > 0) : ?>
-                                                        <del><?= $item['product_price'] ?>₫/kg</del>
+                                                                    <?php if ($item->sale > 0) : ?>
+                                                        <del><?= $item->price ?>₫/kg</del>
                                                         <?php endif ?>
                                                         </span>
                                                                     </span>
@@ -198,7 +198,7 @@
                                 </a>
                             </span>
                         <?php endif ?>
-                        <?php if (empty($data['loai'])) { ?>
+                        <?php if (empty($data['takeSale'])) { ?>
                             <img src="<?= IMGAE_DISPLAY ?>/backend/image/products/404.jpg" style="width: 100%;">
                         <?php } ?>
                     </article>

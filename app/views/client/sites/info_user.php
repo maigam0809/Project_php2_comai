@@ -58,7 +58,7 @@
             </p>
         </div>
         <div class="form-group">
-        <label for="user_phone">Ngay đăng ký</label>
+        <label for="user_phone">Ngày đăng ký</label>
             <input type="data" disabled class="form-control" name="created_at" id="created_at" value="<?= $a[0]['created_at'] ?>">
         </div>
         <div class="form-group ">

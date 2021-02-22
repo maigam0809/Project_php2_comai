@@ -40,15 +40,7 @@ class Product extends BaseModel{
         return $model;
     }
 
-    public static function topView5(){
-        $model = new Static();
-        $model->queryBuilder = "
-        SELECT products.*,categories.name 'cate_name' FROM `categories` INNER JOIN $model->tableName products on products.cate_id = categories.id 
-        where products.view order by products.view desc;
-        ";
-        return $model;
-    }
-
+   
     public static function joinUserProId($id){
         $model = new static();
         $model->queryBuilder = "select comments.content,
@@ -74,6 +66,8 @@ class Product extends BaseModel{
         ";
         return $model;
     }
+
+    
 
 
 

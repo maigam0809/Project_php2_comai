@@ -1,5 +1,4 @@
 <?php
-    session_start();
     
     define('BASE_URL', "/assign_PHP2");// Đưỡng dẫn đến thư mục project
     define('VIEW_URL', './app/views'); // Đường dẫn hiển thị views
@@ -16,6 +15,8 @@
 
     require_once "autoload.php";
     require_once "routes.php";
+    session_start();
+
     // require_once "app/core/Validate.php";
     // require_once "app/core/Session.php";
 

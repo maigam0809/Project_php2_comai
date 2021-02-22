@@ -14,7 +14,6 @@ use App\Models\Supplier;
 class HomeController extends Controller{
 
     function index(){
-
         $categories = Category::all();
         $top10 = Product::all();
         $takeHoaQuaSay = Product::takeId('hoa quả sấy')->get();

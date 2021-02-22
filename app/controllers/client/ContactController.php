@@ -4,11 +4,13 @@ namespace App\Controllers\Client;
 use App\Core\Session;
 use App\Core\Controller;
 use App\Models\Contact;
+use App\Models\Category;
 use App\Models\InfoShop;
 
 class ContactController extends Controller{
 
     function index(){
+        $categories = Category::all();
         $info_shop1 = InfoShop::all();
         $info_shop = $info_shop1[0];
 
@@ -17,6 +19,7 @@ class ContactController extends Controller{
         
         $this->view_fe('main/index',[
             'info_shop'=>$info_shop,
+            'categories'=>$categories,
         ]);
     }
 

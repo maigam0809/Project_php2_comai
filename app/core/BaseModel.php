@@ -127,11 +127,13 @@ class BaseModel
  	public function andWhere($arr){
  		$this->queryBuilder .= " and $arr[0] $arr[1] '$arr[2]'";
  		return $this;
- 	}
+	 }
+	 
  	public function orWhere($arr){
  		$this->queryBuilder .= " or $arr[0] $arr[1] '$arr[2]'";
  		return $this;
- 	}
+	 }
+	 
  	public function first(){
 
  		$stmt = $this->getConnect()->prepare($this->queryBuilder);

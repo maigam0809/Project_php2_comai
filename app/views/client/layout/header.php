@@ -1,30 +1,32 @@
-<!-- <php
+<?php
 
-$a="";
+$user=null;
+
+// session_destroy();
+
 if(isset($_SESSION['user'])){
-    $a=$_SESSION['user'];
+    $user = $_SESSION['user'];
 }
 
-if (isset($_SESSION['user']) && ($a[0]['role']) == 0) {
-    
 
-    if (!empty($a[0]['user_image'])) {
-       $avatar= "<a href='".BASE_URL."/info_user/index/".$_SESSION['user'][0]['user_id']."'><img src='".IMGAE_DISPLAY."/backend/image/user/".$a[0]['user_image']." ' style='width:50px; height: 50px;border-radius: 90%;margin-right: 7px;'></a>";
+if ($user && ($user->role) == 0) {
+    if (!empty($a->image)) {
+       $avatar= "<a href='".BASE_URL."/info_user/".$_SESSION['user']->id."'><img src='".IMGAE_DISPLAY."/backend/image/user/".$user->image." ' style='width:50px; height: 50px;border-radius: 90%;margin-right: 7px;'></a>";
     }
     else{
-        $avatar="<a href='".BASE_URL."/info_user/index/".$_SESSION['user'][0]['user_id']."'><i class='fas fa-user'></i></a>"; 
+        $avatar="<a href='".BASE_URL."/info_user/".$_SESSION['user']->id."'><i class='fas fa-user'></i></a>"; 
     } 
     $text="<a href='".BASE_URL."/logout'>Đăng xuất</a>";
 }
-elseif(isset($_SESSION['user']) && ($a[0]['role']) == 1){
+elseif($user && ($user->role) == 1){
     
-    if (!empty($a[0]['user_image'])) {
-       $avatar= "<a href='".BASE_URL."/info_user/index/".$_SESSION['user'][0]['user_id']."'><img src='".IMGAE_DISPLAY."/backend/image/user/".$a[0]['user_image']." ' style='width:50px; height: 50px;border-radius: 90%;margin-right: 7px;'></a>";
+    if (!empty($user->image)) {
+       $avatar= "<a href='".BASE_URL."/info_user/".$_SESSION['user']->id."'><img src='".IMGAE_DISPLAY."/backend/image/user/".$user->image." ' style='width:50px; height: 50px;border-radius: 90%;margin-right: 7px;'></a>";
     }
     else{
         $avatar="<i class='fas fa-user'></i>"; 
     } 
-    $text="<a href='".BASE_URL."/admin'>Admin</a> <br>
+    $text="<a href='".BASE_URL."/admin/home'>Admin</a> <br>
     <a href='".BASE_URL."/logout'>Đăng xuất</a>";
 }
 else{
@@ -32,7 +34,7 @@ else{
     <a href='".BASE_URL."/register'>Đăng ký</a>";
     $avatar="<i class='fas fa-user'></i>";
 }
-?> -->
+?>
 
 <?php
 use App\Models\InfoShop;
@@ -97,9 +99,9 @@ use App\Models\Slider;
 
 
                             <div class="link">
-                                <a href="<?= BASE_URL?>/product_type_sale/sp_bc">Bán chạy nhất</a> |
+                                <a href="<?= BASE_URL?>/product_ban_chay">Bán chạy nhất</a> |
                                 <a href="<?= BASE_URL?>/news">Tin tức</a> |
-                                <a href="<?= BASE_URL?>/product_type_sale/">Giảm giá</a>
+                                <a href="<?= BASE_URL?>/product_sale">Giảm giá</a>
                             </div>
                         </div>
                         <div class="header-final">
@@ -109,9 +111,9 @@ use App\Models\Slider;
                                 <a href="<?= BASE_URL?>/history"> Xem đơn hàng</a>
                             </div>
                             <div class="detail detail-none2">`
-                                <!-- <php  echo $avatar; ?>  
+                                <?php  echo $avatar; ?>  
                                 <div>
-                                <php  echo $text; ?> -->
+                                <?php  echo $text; ?>
 
                             </div>
                         </div>

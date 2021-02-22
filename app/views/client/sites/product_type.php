@@ -50,7 +50,7 @@
                         <article class="aside-item aside-filter hidden-md hidden-sm hidden-xs">
                             <div class="aside-title aside-title-fillter">
                                 <div class="title_module border_bottom_10">
-                                    <h2><span>SP được xem nhiều nhất</span></h2>
+                                    <h2><span>SP bán chạy</span></h2>
                                 </div>
                             </div>
 

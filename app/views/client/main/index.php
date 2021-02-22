@@ -1,3 +1,8 @@
+<?php 
+    use App\Core\Session;
+    $session = new Session;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +31,7 @@
 
     <!-- start header -->
         <?php
-        //  $session = new Session();
+            // $session = new Session();
         //  $errors = $session->getFormError();
         //  $states = $session->getFormState();
             include_once VIEW_URL."/client/layout/header.php";

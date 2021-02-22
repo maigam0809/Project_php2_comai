@@ -18,6 +18,7 @@ use App\Controllers\Client\ProductController as ClientProductController;
 use App\Controllers\Client\NewController as ClientNewController;
 use App\Controllers\Client\ContactController as ClientContactController;
 use App\Controllers\Client\SearchController;
+use App\Controllers\Client\LoginController;
 
 $url = isset($_GET['url']) == true ? $_GET['url'] : '/';
 $arrPath = explode("/", $url);
@@ -350,6 +351,20 @@ if ($arrPath[0] === 'admin') {
             $ctr = new ClientHomeController();
             echo $ctr->index();
         break;
+        case "login":
+            $ctr = new LoginController();
+            echo $ctr->index();
+        break;
+        case "login_store":
+            $ctr = new LoginController();
+            echo $ctr->login($_POST);
+        break;
+        case "logout":
+            $ctr = new LoginController();
+            // var_dump("okok");
+            // die;
+            echo $ctr->logout();
+        break;
         case "product_detail":
             $ctr = new ClientProductController();
             echo $ctr->detail($param);
@@ -357,6 +372,14 @@ if ($arrPath[0] === 'admin') {
         case "product_type_sale":
             $ctr = new ClientProductController();
             echo $ctr->listCateId($param);
+        break;
+        case "product_ban_chay":
+            $ctr = new ClientProductController();
+            echo $ctr->banChayTop10();
+        break;
+        case "product_sale":
+            $ctr = new ClientProductController();
+            echo $ctr->sale();
         break;
         case "news":
             $ctr = new ClientNewController();
