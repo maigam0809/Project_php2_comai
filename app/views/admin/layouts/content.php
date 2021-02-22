@@ -119,13 +119,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($data['countCmtPro'] as $item): ?>
+                                        <?php 
+                                        foreach ($data['countCmtPro'] as $item): ?>
                                         <tr>
-                                            <?php
-                                             echo $item;
-                                            ?>
                                             <th scope="row"><?=$item->name?></th>
-                                            <td><?=$item?></td>
+                                            <td><?=$item->so_luong_cmt?></td>
                                         </tr>
                                         <?php endforeach;?>
 
@@ -149,8 +147,8 @@
                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                     Total:
                                     <?php
-                                        foreach ($data['thong_ke_users'] as $item) {
-                                            echo "$item[dem_user]";
+                                        foreach ($data['countUser'] as $item) {
+                                            echo "$item";
                                         }
                                     ?>
                                 </div>
@@ -164,10 +162,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($data['thong_ke_loai_users'] as $item): ?>
+                                        <?php foreach ($data['lietKeRole'] as $item): ?>
                                         <tr>
-                                            <th scope="row"><?=$item['Quyền']?></th>
-                                            <td><?=$item['sl']?></td>
+                                            <th scope="row"><?=$item->Quyền?></th>
+                                            <td><?=$item->so_luong?></td>
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>
@@ -197,8 +195,8 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 Total:
                                 <?php
-                                foreach ($data['thong_ke_sp'] as $item) {
-                                    echo "$item[dem_pro]";
+                                foreach ($data['countPro'] as $item) {
+                                    echo "$item";
                                 }
                             ?>
                             </div>
@@ -214,13 +212,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data['thong_ke'] as $item): ?>
+                                <?php foreach ($data['thong_ke_hang_hoa'] as $item): ?>
                                 <tr>
-                                    <th scope="row"><?=$item['cate_name']?></th>
-                                    <td><?=$item['sl']?></td>
-                                    <td><?=number_format($item['gia_min'],0)?> VNĐ</td>
-                                    <td><?=number_format($item['gia_max'],0)?> VNĐ</td>
-                                    <td><?=number_format($item['gia_avg'],0)?> VNĐ</td>
+                                    <th scope="row"><?=$item->Loại?></th>
+                                    <td><?=$item->sl?></td>
+                                    <td><?=number_format($item->gia_min,0)?> VNĐ</td>
+                                    <td><?=number_format($item->gia_max,0)?> VNĐ</td>
+                                    <td><?=number_format($item->gia_avg,0)?> VNĐ</td>
                                 </tr>
                                 <?php endforeach;?>
                             </tbody>
@@ -242,11 +240,11 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                        <?php
+                                        <!-- <php
                                             foreach ($data['thong_ke_order'] as $item) {
                                                 echo "$item[dem_order]";
                                             }
-                                        ?>
+                                        ?> -->
                                     </div>
                                 </div>
                                 <table class="mt-3 table table-striped text-center">
@@ -257,12 +255,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($data['thong_ke_sp_order'] as $item): ?>
-                                        <tr>
-                                            <th scope="row"><?=$item['user_name']?></th>
-                                            <th scope="row"><?=$item['dem_order']?></th>
-                                        </tr>
-                                        <?php endforeach;?>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -294,8 +287,8 @@
         var data = google.visualization.arrayToDataTable([
             ['Loại', 'Số Lượng'],
             <?php
-                    foreach ($data['thong_ke'] as $item) {
-                        echo "['$item[cate_name]',$item[so_luong]],";
+                    foreach ($data['thong_ke_hang_hoa'] as $item) {
+                        echo "['$item->Loại',$item->so_luong],";
                     }
                 ?>
         ]);

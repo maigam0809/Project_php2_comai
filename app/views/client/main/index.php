@@ -26,9 +26,9 @@
 
     <!-- start header -->
         <?php
-         $session = new Session();
-         $errors = $session->getFormError();
-         $states = $session->getFormState();
+        //  $session = new Session();
+        //  $errors = $session->getFormError();
+        //  $states = $session->getFormState();
             include_once VIEW_URL."/client/layout/header.php";
         ?>
     <!-- end header -->
@@ -37,7 +37,7 @@
         <?php
             include_once $menu;
         ?>
-    <!-- end menu
+    <!-- end menu -->
     <!-- start content -->
         <?php
             include_once $feContent;
@@ -46,12 +46,12 @@
 
     <!-- bắt đầu footer -->
         <?php
-            include_once VIEW_URL."/client/layout/footer.php"
+            include_once VIEW_URL."/client/layout/footer.php";
         ?>
     <!-- stop footer -->
 
 
-    <script type="text/javascript" src="<?=TOPUBLIC?>/js/slider_sick.js"></script>
+    
 
     <script src="<?=TOPUBLIC?>/js/hidden-menu.js"></script>
     <script src="<?=TOPUBLIC?>/js/nouislider.js"></script>

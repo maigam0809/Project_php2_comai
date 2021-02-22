@@ -1,5 +1,8 @@
 
+
 <?php
+namespace Demo;
+
 extract($_REQUEST);
 function sentEmail($e='dunvph10007@fpt.edu.vn', $pass='', $cus="phuongddph10045@fpt.edu.vn", $mail ='ok heets nha', $phone ='097659407', $content='',$name=''){
     //1. Key dưới đây chỉ dùng tạm, khi chạy dịch vụ chính thức bạn cần đăng ký tài khoản của sendgrid.com

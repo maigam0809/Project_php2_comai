@@ -21,8 +21,12 @@ class HomeController extends Controller{
         $countSlide = Slider::count()->first();
         $countCmt = Comment::count()->first();
         
-        $countCmtPro = Comment::tkComment()->first();
-        // var_dump($countCmt);
+        $countCmtPro = Comment::tkComment()->get();
+
+        $lietKeRole = User::lietKeRole()->get();
+        $thong_ke_hang_hoa = Product::thong_ke_hang_hoa()->get();
+        // echo "<pre>";
+        // var_dump($thong_ke_hang_hoa);
         // die;
       
         $this->view('main/index',[
@@ -35,6 +39,8 @@ class HomeController extends Controller{
             'countCmt'=>$countCmt,
             'countCmtPro'=>$countCmtPro,
             'countSlide'=>$countSlide,
+            'lietKeRole'=>$lietKeRole,
+            'thong_ke_hang_hoa'=>$thong_ke_hang_hoa,
 
         ]);
         

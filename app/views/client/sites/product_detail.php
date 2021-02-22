@@ -5,31 +5,30 @@
 
 <div class="container-fluild product_detail">
     <div class="container info">
-        <?php  $session = new Session();  $session->flash();?>
+        <!-- <php  $session = new Session();  $session->flash();?> -->
         <div class="row">
             <div class="image col-lg-5 col-md-6 col-sm-12">
-                <img src="<?= IMGAE_DISPLAY ?>/backend/image/products/<?= $data['product']['product_image'] ?>" alt="">
+                <img src="<?= IMGAE_DISPLAY ?>/backend/image/products/<?= $data['proId']->image ?>" alt="">
             </div>
             <div class="info-product col-lg-5 col-md-6 col-sm-12">
                 <p>
                 <h4 style="font-weight:bold; margin-bottom: 10px;font-size: 20px">
-                    <?= $data['product']['product_name'] ?>
+                    <?= $data['proId']->name ?>
                 </h4>
-                <span>Xuất xứ: <?= $data['product']['product_intro'] ?></span>
+                <span>Xuất xứ: <?= $data['proId']->intro ?></span>
                 </p>
                 <p>
                     <?php
-                    $sale = (int)$data['product']['product_sale'];
-                    // $sale=(float)$data['product']['product_sale'];
+                    $sale = (int)$data['proId']->sale;
                     $toll_sale = 100 - $sale;
-                    $tich = $toll_sale * $data['product']['product_price'];
+                    $tich = $toll_sale * $data['proId']->price;
                     $price_sale = ($tich / 100);
                     ?>
                     <span style="color: #ff8e4a; font-size:24px; font-weight:bold"
                         class="price"><?= $price_sale ?>đ/kg</span>
-                    <?php if ($data['product']['product_sale'] != "0") { ?>
+                    <?php if ($data['proId']->sale != "0") { ?>
                     <span style="color:#707070; font-size: 16px; font-weight:bold"
-                        class="sale"><del><?= $data['product']['product_price'] ?>đ/kg</del></span>
+                        class="sale"><del><?= $data['proId']->price ?>đ/kg</del></span>
                     <?php } ?>
                 </p>
                 <p>
@@ -40,7 +39,6 @@
                     <p class="btn-count">
                         <button id="btn_delete">-</button>
                         <span id="count">1</span>
-                        <!-- <input id="count" type="hidden" value="1"> -->
                         <button id="btn_add">+</button>
                     </p>
                 </div>
@@ -77,7 +75,7 @@
     <div class="container info pl-4">
         <h2 style="font-family:Arial;font-size: 2rem; font-weight:bold; margin: 10px 5px;">Mô tả </h2>
         <p style="font-size: 0.8rem;">
-            <?= $data['product']['product_description'] ?>
+            <?= $data['proId']->description ?>
         </p>
     </div>
     <div class="container info pl-3">
@@ -112,7 +110,7 @@
                                                                                         echo "";
                                                                                     }  ?>";
                             document.getElementById("product_id").value =
-                                "<?= $data['product']['product_id'] ?>";
+                                "<?= $data['proId']->id ?>";
 
                         }
                     }
@@ -130,7 +128,7 @@
                                                                 } else {
                                                                     echo "";
                                                                 }  ?>" name="name" disabled>
-            <input type="hidden" id="product_id" value="<?= $data['product']['product_id'] ?>" disabled>
+            <input type="hidden" id="product_id" value="<?= $data['product']->id?>" disabled>
             <textarea class="form-control" name="" id="comment" cols="100" rows="5"
                 <?php if (!isset($_SESSION['user'])) {
                                                                         echo "disabled";
@@ -147,20 +145,20 @@
         </form>
         <h5 class="font-weight-bold text-success">Bình luận mới nhất</h5>
         <div class="comments-list col-xl-6 col-md-6" style="margin-top: 20px; " id ="all_comments">
-                <?php foreach ($data["comment"] as $item) : ?>
+                <?php foreach ($data["commentProId"] as $item) : ?>
                 <div class="media mb-4 pl-1 col-10" style="border-bottom: 0.2px solid #DDDDDD;">
 
                     <a class="media-left mr-3 " href="#">
-                        <img src="https://ui-avatars.com/api/?name=<?= $item['user_name'] ?>">
+                        <img src="https://ui-avatars.com/api/?name=<?= $item->user_name ?>">
                     </a>
                     <div class="media-body">
 
-                        <h6 class="media-heading user_name font-weight-bold"><?=$item['user_name']?></h6>
-                        <p class="font-size-2" style="font-size: 14px;"><?=$item['content']?></p>
+                        <h6 class="media-heading user_name font-weight-bold"><?=$item->user_name?></h6>
+                        <p class="font-size-2" style="font-size: 14px;"><?=$item->content?></p>
                     </div>
 
                     <p class="pull-right">
-                        <small><?=$item['created_at']?></small>
+                        <small><?=$item->created_at?></small>
                     </p>
                 </div>
                 <?php endforeach; ?>

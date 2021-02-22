@@ -9,6 +9,11 @@
             <p style="color:red;">  <?php echo $errors['name'] ?? ''; ?></p>
         </div>
         <div class="form-group">
+            <label for="">Address</label>
+            <input type="address" class="form-control" name="address" id="" value="<?=$infoId->address?>">
+            <p style="color:red;">  <?php echo $errors['address'] ?? ''; ?></p>
+        </div>
+        <div class="form-group">
             <label for="">Email</label>
             <input type="email" class="form-control" name="email" id="" value="<?=$infoId->email?>">
             <p style="color:red;">  <?php echo $errors['email'] ?? ''; ?></p>

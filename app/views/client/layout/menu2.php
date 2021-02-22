@@ -12,8 +12,7 @@
                     <ul>
                     <?php foreach($data['categories'] as $item):?>
                         <li>
-                        
-                            <a href="<?= BASE_URL?>/product_type_sale/index/<?= $item['cate_id']?>/1"><?=$item['cate_name']?></a>
+                            <a href="<?= BASE_URL?>/product_type_sale/<?= $item->id?>"><?=$item->name?></a>
                         </li>
                         <?php endforeach;?>
                     </ul>

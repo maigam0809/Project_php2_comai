@@ -143,7 +143,9 @@ class BaseModel
 		}else{
 			return null;
 		}
- 	}
+	 }
+	 
+	 
  	public function get(){
  		$stmt = $this->getConnect()->prepare($this->queryBuilder);
 		$stmt->execute();
@@ -155,6 +157,19 @@ class BaseModel
 	public static function find($id){
 		$model = new static();
         $model->queryBuilder = "select * from " . $model->tableName . " where id = $id";
+        $stmt = $model->getConnect()->prepare($model->queryBuilder);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_CLASS, get_class($model));
+        if(count($data) > 0){
+            return $data[0];
+        }
+
+        return false;
+	}
+
+	public static function like($array,$pattern){
+		$model = new static();
+        $model->queryBuilder = "select * from " . $model->tableName . " where $array like '%$pattern%'";
         $stmt = $model->getConnect()->prepare($model->queryBuilder);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_CLASS, get_class($model));

@@ -1,5 +1,6 @@
 <?php
 
+// Trang Admin quản trị các danh mục người dùng
 use App\Controllers\Admin\CategoryController;
 use App\Controllers\Admin\HomeController;
 use App\Controllers\Admin\ProductController;
@@ -9,10 +10,20 @@ use App\Controllers\Admin\NewController;
 use App\Controllers\Admin\UserController;
 use App\Controllers\Admin\InfoController;
 use App\Controllers\Admin\CommentController;
+use App\Controllers\Admin\ContactController;
+
+// Trang biểu hiển phía client
+use App\Controllers\Client\HomeController as ClientHomeController;
+use App\Controllers\Client\ProductController as ClientProductController;
+use App\Controllers\Client\NewController as ClientNewController;
+use App\Controllers\Client\ContactController as ClientContactController;
+use App\Controllers\Client\SearchController;
 
 $url = isset($_GET['url']) == true ? $_GET['url'] : '/';
 $arrPath = explode("/", $url);
 // var_dump($arrPath[3]);
+// die;
+// var_dump($_GET);
 // die;
 
 if ($arrPath[0] === 'admin') {
@@ -23,6 +34,7 @@ if ($arrPath[0] === 'admin') {
             $actionPath = !empty($arrPath[2]) ? $arrPath[2] : '/';
             // $actionId = !empty($arrPath[3]) ? $arrPath[3] : '';
             switch($actionPath){
+                case '/':
                 case 'index':
                     $ctr = new HomeController();
                     echo $ctr->index();
@@ -273,7 +285,7 @@ if ($arrPath[0] === 'admin') {
                
             }
         break;
-        // kết thúc phần loại hàng
+        // kết thúc phần users
 
         case "comments":
             $actionPath = !empty($arrPath[2]) ? $arrPath[2] : '/';
@@ -296,7 +308,31 @@ if ($arrPath[0] === 'admin') {
                
             }
         break;
-        // kết thúc phần quản lí hình ảnh
+        // kết thúc phần quản lí bình luận của sản phẩm
+
+        
+        case "contact":
+            $actionPath = !empty($arrPath[2]) ? $arrPath[2] : '/';
+            // Lấy id sau action
+            $actionId = !empty($arrPath[3]) ? $arrPath[3] : '';
+            switch ($actionPath) {
+                case '/':
+                case 'index':
+                    $ctr = new ContactController();
+                    echo $ctr->index();
+                    break;
+                case "delete":
+                    $ctr = new ContactController();
+                    echo $ctr->destroy($actionId);
+                break;
+                case "detail":
+                    $ctr = new ContactController();
+                    echo $ctr->detail($actionId);
+                break;
+               
+            }
+        break;
+        // Kết thúc quản lí liên hệ với khách hàng
 
 
         default:
@@ -307,12 +343,41 @@ if ($arrPath[0] === 'admin') {
 } else {
     // switch for client
     $cPath = !empty($arrPath[0]) ? $arrPath[0] : '/';
-
+    $param = isset($arrPath[1]) ? $arrPath[1] : '/';
     switch ($cPath) {
         case "/":
-            $ctr = new UserController();
-            echo $ctr->detail($actionId);
-            echo "Đây là trang chủ phía fronend";
+        case "home":
+            $ctr = new ClientHomeController();
+            echo $ctr->index();
+        break;
+        case "product_detail":
+            $ctr = new ClientProductController();
+            echo $ctr->detail($param);
+        break;
+        case "product_type_sale":
+            $ctr = new ClientProductController();
+            echo $ctr->listCateId($param);
+        break;
+        case "news":
+            $ctr = new ClientNewController();
+            echo $ctr->index();
+        break;
+        case "new_detail":
+            $ctr = new ClientNewController();
+            echo $ctr->detail($param);
+        break;
+        case "contact":
+            $ctr = new ClientContactController();
+            echo $ctr->index();
+        break;
+        case "store":
+            $ctr = new ClientContactController();
+            echo $ctr->store($_POST);
+        break;
+        case "search":
+         
+            $ctr = new SearchController();
+            echo $ctr->index($param);
         break;
     }
 }

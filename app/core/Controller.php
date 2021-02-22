@@ -6,13 +6,7 @@ class Controller {
     public $be_content = VIEW_URL."/admin/layouts/content.php";
     public $fe_content = VIEW_URL."/client/layouts/content.php";
     public $menu = VIEW_URL."/client/layout/menu2.php";
-    public $message='';
     
-    // public function model($model){
-    //     require_once "./app/models/".$model.".php";
-    //     return new $model;
-    // }
-
     // Hàm upload ảnh    
     public function save_file($name, $target){
         $file_uploaded = $_FILES[$name];
@@ -24,21 +18,13 @@ class Controller {
         return $file_name;
     }
 
-    // function img_upload($file){
-    //     if($file['size'] > 0){
-    //         $filename = uniqid() . '-' . $file['name'];
-    //         move_uploaded_file($file['tmp_name'], IMAGE_BE . $filename);
-    //         return IMAGE_BE . $filename;
-            
-    //     }
-    //     return null;
-    // }
-
+    // Function hiện view  bên admin
     public function view($view, $data=[]){
         $beContent = $this->be_content;
         require_once "./app/views/admin/".$view.".php";
     }
 
+    // Function hiện View Client 
     public function view_fe($view, $data = []){
         $feContent = $this->fe_content;
         $menu = $this->menu;

@@ -12,7 +12,7 @@
     define('IMGAE_DISPLAY', BASE_URL.'/public');
 
     // định nghĩa đường dẫn đến public client
-    define('TOPUBLIC', BASE_URL.'/public/client');
+    define('TOPUBLIC', BASE_URL.'/public/frontend');
 
     require_once "autoload.php";
     require_once "routes.php";

@@ -1,27 +1,26 @@
-<footer style="background-image: url(<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['slides'][6]['slider_image']?>); padding-bottom: 146px;
+<footer style="background-image: url(<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['bg_footer']->image?>); padding-bottom: 146px;
     background-size: 100% 100%;" >
-    
-    <div class="container " style="margin-top: 50px">
+    <div class="container " style="margin-top: 0px">
         <div class="list-top ">
             <div class="top-item row">
                 <div class="item flex-column item-none-1 col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <a href="">
-                        <img src="<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['slides'][2]['slider_image']?>" alt="">
+                        <img src="<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['logo_footer']->image?>" alt="">
                     </a>
                     <p>
                         Siêu thị MiniMart cung cấp các mặt hàng siêu sạch đem lại sức khỏe cho bạn.
                     </p>
                     <div class="d-flex">
-                        <img class="img_bg" src="<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['slides'][3]['slider_image']?>" alt="">
-                        <p><?=$data['info'][0]['info_adress']?></p>
+                        <img class="img_bg" src="<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['icon_footer1']->image?>" alt="">
+                        <p><?=$data['info_shop']->address?></p>
                     </div>
                     <div class="d-flex">
-                        <img class="img_bg" src="<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['slides'][4]['slider_image']?>" alt="">
-                        <p><?=$data['info'][0]['info_phone']?></p>
+                        <img class="img_bg" src="<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['icon_footer2']->image?>" alt="">
+                        <p><?=$data['info_shop']->phone?></p>
                     </div>
                     <div class="d-flex">
-                        <img class="img_bg" src="<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['slides'][5]['slider_image']?>" alt="">
-                        <p><?=$data['info'][0]['info_email']?></p>
+                        <img class="img_bg" src="<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['icon_footer3']->image?>" alt="">
+                        <p><?=$data['info_shop']->email?></p>
                     </div>
                 </div>
                 <ul class="item  item-list flex-column col-lg-4 col-md-6 col-sm-12 col-xs-12">
@@ -45,9 +44,9 @@
                         </form>
                     </li>
                     <li>
-                        <?php
+                        <!-- <php
                             $session = new session(); $session->flash();
-                        ?>
+                        ?> -->
                     </li>
                     <li>
                         <h4 class="item-title">

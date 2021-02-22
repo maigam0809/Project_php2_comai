@@ -65,25 +65,25 @@
                 <span>Info_shop</span>
             </a>
         </li>
-        <!-- <li class="nav-item">
-        <a class="nav-link" href="<?=BASE_URL?>/admin/contact/index">
-        <i class="fas fa-address-book"></i>
-            <span>Contact</span>
-        </a>
-    </li> -->
+        <li class="nav-item">
+            <a class="nav-link" href="<?=BASE_URL?>/admin/contact/index">
+                <i class="fas fa-address-book"></i>
+                <span>Contact</span>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="<?=BASE_URL?>/admin/news/index">
                 <i class="fas fa-newspaper"></i>
                 <span>News</span>
             </a>
         </li>
-        
-        <!-- <li class="nav-item">
-        <a class="nav-link" href="<?=BASE_URL?>/admin/order/index">
-        <i class="fas fa-list-alt"></i>
-            <span>Orders</span>
-        </a>
-    </li> -->
+
+        <li class="nav-item">
+            <a class="nav-link" href="<?=BASE_URL?>/admin/order/index">
+                <i class="fas fa-list-alt"></i>
+                <span>Orders</span>
+            </a>
+        </li>
 
 
     </div>

@@ -11,6 +11,9 @@ class CategoryController extends Controller {
     public function index(){
         $this->be_content = "./app/views/admin/cate/cate-list.php";
         $cates = Category::all();
+        // echo "<pre>";
+        // var_dump($cates);
+        // die;
         $this->view('cate/index',[
             'cate' => $cates,
         ]);
@@ -68,6 +71,7 @@ class CategoryController extends Controller {
             header('Location: create');
             exit;
         }
+      
        
     }
 

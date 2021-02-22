@@ -17,16 +17,22 @@ class Comment extends BaseModel {
                                 on $model->tableName.product_id = products.id ";
         return $model;
     }
+   
+
     public static function tkComment(){
         $model = new static();
-        $model->queryBuilder = "select $model->tableName.id ,
-                                count($model->tableName.product_id),
-                                products.name
+        $model->queryBuilder = "select products.name,
+                                count($model->tableName.id) 'so_luong_cmt'
                                 from $model->tableName 
                                 inner join products 
-                                on $model->tableName.product_id = products.id ";
+                                on $model->tableName.product_id = products.id 
+                                where $model->tableName.product_id
+                                group by $model->tableName.product_id
+                                order by products.id asc";
         return $model;
     }
+
+
 
 
 }

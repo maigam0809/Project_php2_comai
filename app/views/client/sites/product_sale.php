@@ -149,7 +149,7 @@
                                                                 <img class="lazyload loaded" src="<?= IMGAE_DISPLAY ?>/backend/image/products/<?= $item['product_image'] ?>">
                                                             </a>
                                                             <div class="pro_action">
-                                                            <?php if ($item['product_status'] != "1") : ?>
+                                                            <?php if ($item['product_status'] != 0) : ?>
                                                 <form action="" method="post">
                                                     <input type="hidden" name="<?= $item['product_id'] ?>" value="1">
                                                     <button type="submit" name="btn_cart" class="btn btn-cart hidden ">Thêm vào giỏ hàng </button>

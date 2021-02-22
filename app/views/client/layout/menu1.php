@@ -1,5 +1,5 @@
 <section >
-    <div id="background" style="background-image: url(<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['slides'][1]['slider_image']?>);">
+    <div id="background" style="background-image: url(<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['banner']->image?>);">
         <div class="container">
             <div id="menu" class="col-lg-3 col-md-12">
                 <div id="cate2" class="cate2">
@@ -24,15 +24,11 @@
                 <div class="show2 hiden-none-menu" id="show_menu_cate">
                     <?php foreach($data['categories'] as $item):?>
                     <li>
-                        <a href="<?= BASE_URL?>/product_type_sale/index/<?= $item['cate_id']?>/1"><img class="hiden-none" src="<?=IMGAE_DISPLAY?>/backend/image/categories/<?=$item['cate_image']?>" alt=""><?=$item['cate_name']?></a>
+                        <a href="<?= BASE_URL?>/product_type_sale/<?= $item->id?>"><img class="hiden-none" src="<?=IMGAE_DISPLAY?>/backend/image/categories/<?=$item->image?>" alt=""><?=$item->name?></a>
                     </li>
                     <?php endforeach;?>
                 </div>
             </div>
         </div>
-        <!-- <?php
-            echo $data['slides'][1]['slider_image'];
-        ?> -->
-        <!-- <img src="<?=IMGAE_DISPLAY?>/backend/image/sliders/<?=$data['slides'][1]['slider_image']?>" alt=""> -->
     </div>
 </section>
