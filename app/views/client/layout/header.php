@@ -6,26 +6,30 @@ $user=null;
 
 if(isset($_SESSION['user'])){
     $user = $_SESSION['user'];
+    // echo "<pre>";
+    // var_dump($user);
+    // die;
 }
 
 
-if ($user && ($user->role) == 0) {
-    if (!empty($a->image)) {
-       $avatar= "<a href='".BASE_URL."/info_user/".$_SESSION['user']->id."'><img src='".IMGAE_DISPLAY."/backend/image/user/".$user->image." ' style='width:50px; height: 50px;border-radius: 90%;margin-right: 7px;'></a>";
+if ($user && ($user->role == 0)) {
+    if (!empty($user->image)) {
+       $avatar= "<a href='".BASE_URL."/info_user/".$user->id."'><img src='".IMGAE_DISPLAY."/backend/image/user/".$user->image." ' style='width:50px; height: 50px;border-radius: 90%;margin-right: 7px;'></a>";
     }
     else{
-        $avatar="<a href='".BASE_URL."/info_user/".$_SESSION['user']->id."'><i class='fas fa-user'></i></a>"; 
+        $avatar="<a href='".BASE_URL."/info_user/".$user->id."'><i class='fas fa-user'></i></a>"; 
     } 
     $text="<a href='".BASE_URL."/logout'>Đăng xuất</a>";
 }
 elseif($user && ($user->role) == 1){
     
     if (!empty($user->image)) {
-       $avatar= "<a href='".BASE_URL."/info_user/".$_SESSION['user']->id."'><img src='".IMGAE_DISPLAY."/backend/image/user/".$user->image." ' style='width:50px; height: 50px;border-radius: 90%;margin-right: 7px;'></a>";
+       $avatar= "<a href='".BASE_URL."/info_user/".$user->id."'><img src='".IMGAE_DISPLAY."/backend/image/user/".$user->image." ' style='width:50px; height: 50px;border-radius: 90%;margin-right: 7px;'></a>";
     }
     else{
         $avatar="<i class='fas fa-user'></i>"; 
     } 
+    
     $text="<a href='".BASE_URL."/admin/home'>Admin</a> <br>
     <a href='".BASE_URL."/logout'>Đăng xuất</a>";
 }

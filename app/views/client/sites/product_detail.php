@@ -74,7 +74,7 @@
     </div>
     <div class="container info pl-4">
         <h2 style="font-family:Arial;font-size: 2rem; font-weight:bold; margin: 10px 5px;">Mô tả </h2>
-        <p style="font-size: 0.8rem;">
+        <p style="font-size: 14px;">
             <?= $data['proId']->description ?>
         </p>
     </div>
@@ -82,20 +82,23 @@
 
         <h2 class="mb-2 text-danger" style="font-family:Arial;font-size: 2rem; font-weight:bold; margin: 10px 5px;">Bình
             luận của bạn: </h2>
+
         <script>
         function post() {
-            var customer_id = document.getElementById("customer_id").value;
+            var user_id = document.getElementById("user_id").value;
             var product_id = document.getElementById("product_id").value;
-            var comment = document.getElementById("comment").value;
-            if (customer_id && product_id && comment) {
+            var content = document.getElementById("comment").value;
+            var created_at = document.getElementById("created_at").value;
+            if (user_id && product_id && content) {
                 $.ajax({
 
                         type: 'post',
-                        url: 'http://localhost<?= BASE_URL?>/ajaxcomment/index',
+                        url: 'http://localhost<?= BASE_URL?>/ajaxcomment',
                         data: {
-                            customer_id: customer_id,
+                            user_id: user_id,
                             product_id: product_id,
-                            comment: comment
+                            content: content,
+                            created_at: created_at
                         }
 
                         ,
@@ -103,12 +106,14 @@
                             document.getElementById("all_comments").innerHTML = response + document
                                 .getElementById("all_comments").innerHTML;
                             document.getElementById("comment").value = "";
-                            document.getElementById("customer_id").value = "<?php $a = $_SESSION['user'];
-                                                                                    if (isset($_SESSION['user'])) {
-                                                                                        echo $a[0]["user_id"];
-                                                                                    } else {
-                                                                                        echo "";
-                                                                                    }  ?>";
+                            document.getElementById("user_id").value = "<?php 
+                            // var_dump($_SESSION['user']); die;
+                            $a = $_SESSION['user'];
+                            if (isset($_SESSION['user'])) {
+                                echo $a->id;
+                            } else {
+                                echo "";
+                            }  ?>";
                             document.getElementById("product_id").value =
                                 "<?= $data['proId']->id ?>";
 
@@ -120,29 +125,31 @@
             return false;
         }
         </script>
+        
         <form class="" method='post' action="" onsubmit="return post();" id="container">
-            <input type="hidden" id="customer_id" value="<?php
-                                                                if (isset($_SESSION['user'])) {
-                                                                    $a = $_SESSION['user'];
-                                                                    echo $a[0]["user_id"];
-                                                                } else {
-                                                                    echo "";
-                                                                }  ?>" name="name" disabled>
-            <input type="hidden" id="product_id" value="<?= $data['product']->id?>" disabled>
-            <textarea class="form-control" name="" id="comment" cols="100" rows="5"
-                <?php if (!isset($_SESSION['user'])) {
-                                                                        echo "disabled";
-                                                                    } ?>><?php if (!isset($_SESSION['user'])) {
-                                                                                                                                echo "YÊU CẦU ĐĂNG NHẬP TRƯỚC KHI BÌNH LUẬN!";
-                                                                                                                            } ?></textarea> <br>
-
+            <input type="hidden" id="user_id" 
+            value="<?php
+                        if (isset($_SESSION['user'])) {
+                            $a = $_SESSION['user'];
+                            echo $a->id;
+                        } else {
+                            echo "";
+                        }  ?>"
+            name="name" disabled>
+            <input type="hidden" id="product_id" value="<?= $data['proId']->id?>" disabled>
+            <textarea class="form-control" name="" id="comment" cols="100" rows="5"<?php if (!isset($_SESSION['user'])) {echo "disabled";} ?>><?php if (!isset($_SESSION['user'])) {echo "YÊU CẦU ĐĂNG NHẬP TRƯỚC KHI BÌNH LUẬN!";}?></textarea>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="created_at" id="created_at" value="<?= date("Y-m-d", time()); ?>">
+            </div>
 
             <button <?php if (!isset($_SESSION['user'])) {
                             echo "disabled";
                         } ?> type="submit" value="Post Comment" id="submit"
-                style="background-color: #ff8e4a;color: white;padding: 10px 20px 10px 20px;border-radius: 3px;outline: none;border: none;">Bình
-                luận</button>
+                style="background-color: #ff8e4a;color: white;padding: 10px 20px 10px 20px;border-radius: 3px;outline: none;border: none;">
+            Bình luận</button>
         </form>
+        
+        <!-- Danh sách bình luận -->
         <h5 class="font-weight-bold text-success">Bình luận mới nhất</h5>
         <div class="comments-list col-xl-6 col-md-6" style="margin-top: 20px; " id ="all_comments">
                 <?php foreach ($data["commentProId"] as $item) : ?>

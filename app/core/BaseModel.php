@@ -107,6 +107,15 @@ class BaseModel
 		return $model;
 
 	}
+
+	public static function getAtributesWhere($arr,$arr1,$b){
+		$arrayToString = implode(",",$arr);
+		$model = new static();
+		$model->queryBuilder = "select $arrayToString from $model->tableName where $arr1 like '$b'";
+		return $model;
+
+	}
+	
 	public static function getAtributes($arr){
 		$arrayToString = implode(",",$arr);
 		$model = new static();

@@ -22,7 +22,7 @@ class NewController extends Controller{
     function detail($id){
         $newId = News::find($id);
         $categories = Category::all();
-        $topView5 = Product::topView5()->get();
+        // $topView5 = Product::topView5()->get();
 
         $this->fe_content = VIEW_URL."/client/sites/new_detail.php";
         $this->menu = VIEW_URL."/client/layout/menu2.php";
@@ -30,7 +30,7 @@ class NewController extends Controller{
         $this->view_fe('main/index',[
             'newId'=>$newId,
             'categories'=>$categories,
-            'topView5'=>$topView5,
+            // 'topView5'=>$topView5,
             
 
         ]);

@@ -11,6 +11,7 @@ use App\Controllers\Admin\UserController;
 use App\Controllers\Admin\InfoController;
 use App\Controllers\Admin\CommentController;
 use App\Controllers\Admin\ContactController;
+use App\Controllers\Admin\OrderController;
 
 // Trang biểu hiển phía client
 use App\Controllers\Client\HomeController as ClientHomeController;
@@ -19,6 +20,7 @@ use App\Controllers\Client\NewController as ClientNewController;
 use App\Controllers\Client\ContactController as ClientContactController;
 use App\Controllers\Client\SearchController;
 use App\Controllers\Client\LoginController;
+use App\Controllers\Client\ajaxcomment;
 
 $url = isset($_GET['url']) == true ? $_GET['url'] : '/';
 $arrPath = explode("/", $url);
@@ -335,6 +337,37 @@ if ($arrPath[0] === 'admin') {
         break;
         // Kết thúc quản lí liên hệ với khách hàng
 
+        
+        case "order":
+            $actionPath = !empty($arrPath[2]) ? $arrPath[2] : '/';
+            // Lấy id sau action
+            $actionId = !empty($arrPath[3]) ? $arrPath[3] : '';
+            switch ($actionPath) {
+                case '/':
+                case 'index':
+                    $ctr = new OrderController();
+                    echo $ctr->index();
+                    break;
+                case "detail":
+                    $ctr = new OrderController();
+                    echo $ctr->detail($actionId);
+                    break;
+                case "edit":
+                    $ctr = new OrderController();
+                    echo $ctr->edit($actionId);
+                    break;
+                case "update":
+                    $ctr = new OrderController();
+                    echo $ctr->update($actionId);
+                    break;
+                case "delete":
+                    $ctr = new OrderController();
+                    echo $ctr->destroy($actionId);
+                break;
+               
+            }
+        break;
+        // kết thúc phần loại hàng
 
         default:
         echo "Lỗi";
@@ -351,6 +384,18 @@ if ($arrPath[0] === 'admin') {
             $ctr = new ClientHomeController();
             echo $ctr->index();
         break;
+        case "info_shop":
+            $ctr = new ClientHomeController();
+            echo $ctr->info_detail();
+        break;
+        case "register":
+            $ctr = new LoginController();
+            echo $ctr->register();
+        break;
+        case "register_store":
+            $ctr = new LoginController();
+            echo $ctr->register_store($_POST);
+        break;
         case "login":
             $ctr = new LoginController();
             echo $ctr->index();
@@ -361,13 +406,24 @@ if ($arrPath[0] === 'admin') {
         break;
         case "logout":
             $ctr = new LoginController();
-            // var_dump("okok");
-            // die;
             echo $ctr->logout();
         break;
+        case "info_user":
+            $ctr = new LoginController();
+            echo $ctr->detail($param);
+        break;
+        case "user_store":
+            $ctr = new LoginController();
+            echo $ctr->update($param);
+        break;
+
         case "product_detail":
             $ctr = new ClientProductController();
             echo $ctr->detail($param);
+        break;
+        case "ajaxcomment":
+            $ctr = new Ajaxcomment();
+            echo $ctr->index($_POST);
         break;
         case "product_type_sale":
             $ctr = new ClientProductController();

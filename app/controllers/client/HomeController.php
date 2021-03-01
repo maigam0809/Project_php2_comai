@@ -3,13 +3,8 @@ namespace App\Controllers\Client;
 
 use App\Core\Controller;
 use App\Models\Product;
-use App\Models\Comment;
-use App\Models\User;
-use App\Models\News;
 use App\Models\Category;
-// use App\Models\InfoShop;
-// use App\Models\Slider;
-use App\Models\Supplier;
+use App\Models\InfoShop;
 
 class HomeController extends Controller{
 
@@ -33,6 +28,21 @@ class HomeController extends Controller{
             'takeRauCu'=>$takeRauCu,
 
         ]);
+    }
+
+    function info_detail(){
+        $categories = Category::all();
+        $infoshop1 = InfoShop::all();
+        $infoshop = $infoshop1[0];
+        $this->fe_content = VIEW_URL."/client/sites/info_shop.php";
+        $this->menu = VIEW_URL."/client/layout/menu2.php";
+
+        $this->view_fe('main/index',[
+            'categories'=>$categories,
+            'infoshop'=>$infoshop,
+
+        ]);
+
     }
 
 }

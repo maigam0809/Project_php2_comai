@@ -6,8 +6,29 @@
  
 <div class="container-fluild cart-detail">
     <div class="container">
-      <?= $data['info'][0]["info_detail"]?>
+    <p>
+      <?= $data['infoshop']->name?>
+
+    </p>
+    <p>
+      <?= $data['infoshop']->email?>
+    
+    </p>
+    <p>
+      <?= $data['infoshop']->detail?>
+    
+    </p>
+    <p>
+    
+      <?= $data['infoshop']->address?>
+    </p>
+    <p>
+    
+      <?= $data['infoshop']->phone?>
+    </p>
+    
       
     </div>
+    
 
 </div>
